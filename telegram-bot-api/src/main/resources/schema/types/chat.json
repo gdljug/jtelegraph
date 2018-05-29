@@ -8,7 +8,8 @@
       "type": "integer"
     },
     "type": {
-      "type": "string"
+      "type": "string",
+      "enum": [ "private", "group", "supergroup", "channel"]
     },
     "title": {
       "type": "string"
