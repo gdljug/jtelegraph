@@ -1,9 +1,0 @@
-{
-    "description": "This object represents a chat photo. https://core.telegram.org/bots/api#chatphoto",
-    "type": "object",
-    "properties": {
-        "small_file_id ": { "type": "string" },
-        "big_file_id": { "type": "string" }
-    },
-    "required": ["small_file_id", "big_file_id"]
-}

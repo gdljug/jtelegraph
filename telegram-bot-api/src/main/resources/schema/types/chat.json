@@ -1,0 +1,55 @@
+{
+  "additionalProperties": false,
+  "description": "This object represents a chat. https://core.telegram.org/bots/api#chat",
+  "javaType": "com.roadtonerdvana.jtelegraph.telegrambotapi.types.Chat",
+  "properties": {
+    "all_members_are_administrators": {
+      "type": "boolean"
+    },
+    "can_set_sticker_set": {
+      "type": "boolean"
+    },
+    "description": {
+      "type": "string"
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "id": {
+      "type": "integer"
+    },
+    "invite_link": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "photo": {
+      "$ref": "chatPhoto.json",
+      "javaType": "com.roadtonerdvana.jtelegraph.telegrambotapi.types.ChatPhoto",
+      "type": "object"
+    },
+    "pinned_message": {
+      "$ref": "message.json",
+      "javaType": "com.roadtonerdvana.jtelegraph.telegrambotapi.types.Message",
+      "type": "object"
+    },
+    "sticker_set_name": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "type"
+  ],
+  "type": "object"
+}
