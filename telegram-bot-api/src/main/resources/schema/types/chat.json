@@ -1,7 +1,7 @@
 {
   "description": "This object represents a chat. https://core.telegram.org/bots/api#chat",
   "type": "object",
-  "additionalProperties": "false",
+  "additionalProperties": false,
   "javaType": "com.roadtonerdvana.jtelegraph.telegrambotapi.types.Chat",
   "properties": {
     "id": {
