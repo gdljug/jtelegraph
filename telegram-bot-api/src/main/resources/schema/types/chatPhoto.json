@@ -1,18 +1,11 @@
 {
-  "additionalProperties": false,
-  "description": "This object represents a chat photo. https://core.telegram.org/bots/api#chatphoto",
-  "javaType": "com.roadtonerdvana.jtelegraph.telegrambotapi.types.ChatPhoto",
-  "properties": {
-    "big_file_id": {
-      "type": "string"
+    "description": "This object represents a chat photo. https://core.telegram.org/bots/api#chatphoto",
+    "type": "object",
+    "additionalProperties" : false,
+    "javaType" : "com.roadtonerdvana.jtelegraph.telegrambotapi.types.ChatPhoto",
+    "properties": {
+        "small_file_id": { "type": "string" },
+        "big_file_id": { "type": "string" }
     },
-    "small_file_id": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "small_file_id",
-    "big_file_id"
-  ],
-  "type": "object"
+    "required": ["small_file_id", "big_file_id"]
 }

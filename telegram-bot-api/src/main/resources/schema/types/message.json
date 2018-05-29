@@ -1,48 +1,34 @@
 {
-  "additionalProperties": false,
-  "description": "This object represents a message. https://core.telegram.org/bots/api#message",
-  "javaType": "com.roadtonerdvana.jtelegraph.telegrambotapi.types.Message",
-  "properties": {
-    "chat": {
-      "$ref": "chat.json",
-      "javaType": "com.roadtonerdvana.jtelegraph.telegrambotapi.types.Chat",
-      "type": "object"
+    "description": "This object represents a message. https://core.telegram.org/bots/api#message",
+    "type": "object",
+    "additionalProperties" : false,
+    "javaType" : "com.roadtonerdvana.jtelegraph.telegrambotapi.types.Message",
+    "properties": {
+        "message_id": { "type": "integer" },
+        "from": {
+        			"javaType" : "com.roadtonerdvana.jtelegraph.telegrambotapi.types.User",
+                    "$ref" : "user.json",
+                	"type" : "object"
+                },
+        "date": { "type": "integer" },
+        "chat": {
+        			"javaType" : "com.roadtonerdvana.jtelegraph.telegrambotapi.types.Chat",
+                    "$ref" : "chat.json",
+                	"type" : "object"
+                },
+        "forward_from": {
+        			"javaType" : "com.roadtonerdvana.jtelegraph.telegrambotapi.types.User",
+                    "$ref" : "user.json",
+                	"type" : "object"
+                },
+        "forward_from_chat": {
+        			"javaType" : "com.roadtonerdvana.jtelegraph.telegrambotapi.types.Chat",
+                    "$ref" : "chat.json",
+                	"type" : "object"
+                },
+        "forward_from_message_id": { "type": "integer"},
+        "forward_signature": { "type": "string" },
+        "forward_date": { "type": "integer" }
     },
-    "date": {
-      "type": "integer"
-    },
-    "forward_date": {
-      "type": "integer"
-    },
-    "forward_from": {
-      "$ref": "user.json",
-      "javaType": "com.roadtonerdvana.jtelegraph.telegrambotapi.types.User",
-      "type": "object"
-    },
-    "forward_from_chat": {
-      "$ref": "chat.json",
-      "javaType": "com.roadtonerdvana.jtelegraph.telegrambotapi.types.Chat",
-      "type": "object"
-    },
-    "forward_from_message_id": {
-      "type": "integer"
-    },
-    "forward_signature": {
-      "type": "string"
-    },
-    "from": {
-      "$ref": "user.json",
-      "javaType": "com.roadtonerdvana.jtelegraph.telegrambotapi.types.User",
-      "type": "object"
-    },
-    "message_id": {
-      "type": "integer"
-    }
-  },
-  "required": [
-    "message_id",
-    "date",
-    "chat"
-  ],
-  "type": "object"
+    "required": ["message_id", "date", "chat"]
 }
