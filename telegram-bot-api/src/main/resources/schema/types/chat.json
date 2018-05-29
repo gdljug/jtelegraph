@@ -1,31 +1,55 @@
 {
-    "description": "This object represents a chat. https://core.telegram.org/bots/api#chat",
-    "type": "object",
-    "additionalProperties" : "false",
-    "javaType" : "com.roadtonerdvana.jtelegraph.telegrambotapi.types.Chat",
-    "properties": {
-        "id": { "type": "integer" },
-        "type": { "type": "string" },
-        "title": { "type": "string" },
-        "username": { "type": "string" },
-        "first_name":{ "type": "string" },
-        "last_name": { "type": "string" },
-        "all_members_are_administrators": { "type": "boolean" },
-        "photo": {
-                    "javaType" : "com.roadtonerdvana.jtelegraph.telegrambotapi.types.ChatPhoto",
-                    "$ref" : "chatPhoto.json",
-                    "type" : "object"
-                },
-        "description": { "type": "string" },
-        "invite_link": { "type": "string"},
-        "pinned_message": {
-                    "javaType" : "com.roadtonerdvana.jtelegraph.telegrambotapi.types.Message",
-                    "$ref" : "message.json",
-                    "type" : "object"
-                },
-        "sticker_set_name": { "type": "string" },
-        "can_set_sticker_set": { "type": "boolean"}
+  "description": "This object represents a chat. https://core.telegram.org/bots/api#chat",
+  "type": "object",
+  "additionalProperties": "false",
+  "javaType": "com.roadtonerdvana.jtelegraph.telegrambotapi.types.Chat",
+  "properties": {
+    "id": {
+      "type": "integer"
     },
-    "required": ["id","type"]
+    "type": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string"
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "all_members_are_administrators": {
+      "type": "boolean"
+    },
+    "photo": {
+      "javaType": "com.roadtonerdvana.jtelegraph.telegrambotapi.types.ChatPhoto",
+      "$ref": "chatPhoto.json",
+      "type": "object"
+    },
+    "description": {
+      "type": "string"
+    },
+    "invite_link": {
+      "type": "string"
+    },
+    "pinned_message": {
+      "javaType": "com.roadtonerdvana.jtelegraph.telegrambotapi.types.Message",
+      "$ref": "message.json",
+      "type": "object"
+    },
+    "sticker_set_name": {
+      "type": "string"
+    },
+    "can_set_sticker_set": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "id",
+    "type"
+  ]
 }
-

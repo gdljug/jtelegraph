@@ -1,15 +1,31 @@
 {
-    "description": "This object represents a Telegram user or bot. https://core.telegram.org/bots/api#user",
-    "type": "object",
-    "additionalProperties" : false,
-    "javaType" : "com.roadtonerdvana.jtelegraph.telegrambotapi.types.User",
-    "properties": {
-        "id": { "type": "integer" },
-        "is_bot": { "type": "boolean" },
-        "first_name": { "type": "string" },
-        "last_name": { "type": "string" },
-        "username":{ "type": "string" },
-        "language_code": { "type": "string" }
+  "description": "This object represents a Telegram user or bot. https://core.telegram.org/bots/api#user",
+  "type": "object",
+  "additionalProperties": false,
+  "javaType": "com.roadtonerdvana.jtelegraph.telegrambotapi.types.User",
+  "properties": {
+    "id": {
+      "type": "integer"
     },
-    "required": ["id", "is_bot", "first_name"]
+    "is_bot": {
+      "type": "boolean"
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string"
+    },
+    "language_code": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "is_bot",
+    "first_name"
+  ]
 }
