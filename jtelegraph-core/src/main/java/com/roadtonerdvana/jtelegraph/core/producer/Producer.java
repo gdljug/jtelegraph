@@ -3,6 +3,8 @@ package com.roadtonerdvana.jtelegraph.core.producer;
 import java.util.Arrays;
 import java.util.Queue;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.web.client.RestTemplate;
 
 
@@ -14,13 +16,15 @@ import com.roadtonerdvana.jtelegraph.telegrambotapi.updates.GetUpdates;
 import com.roadtonerdvana.jtelegraph.telegrambotapi.updates.Update;
 
 public class Producer implements Runnable {
+    
+    private static Logger logger = LogManager.getLogger();
 
     private Queue<Update> queue;
     
     private MethodExecutor methodExecutor;
 
     public Update[] longPolling(GetUpdates request) {
-        System.out.println("Begin long polling");
+        logger.info("Begin long polling");
         return methodExecutor.executeMethod(Method.GET_UPDATES, request, Update[].class);
     }
 
@@ -42,8 +46,7 @@ public class Producer implements Runnable {
 
             }
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error(e);
         }
 
     }

@@ -2,9 +2,14 @@ package com.roadtonerdvana.jtelegraph.core.consumer;
 
 import java.util.Queue;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.roadtonerdvana.jtelegraph.telegrambotapi.updates.Update;
 
 public class Consumer implements Runnable {
+    
+    private static Logger logger = LogManager.getLogger();
 
     private Queue<Update> queue;
     private Command command;
@@ -18,8 +23,7 @@ public class Consumer implements Runnable {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                logger.error(e);
             }
         }
     }

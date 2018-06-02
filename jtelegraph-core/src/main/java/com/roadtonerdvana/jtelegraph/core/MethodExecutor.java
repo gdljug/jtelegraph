@@ -3,12 +3,16 @@ package com.roadtonerdvana.jtelegraph.core;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class MethodExecutor {
+    
+    private static Logger logger = LogManager.getLogger();
 
     private RestTemplate restTemplate;
     private ExecutorService executorService;
@@ -23,9 +27,8 @@ public class MethodExecutor {
             if (jsonNode.get("ok").asBoolean()) {
                 return objectMapper.readValue(jsonNode.get("result").toString(), responseClass);
             }
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        } catch (Exception e) {;
+            logger.error(e);
         }
         return null;    
     }
@@ -36,7 +39,7 @@ public class MethodExecutor {
             @Override
             public void run() {
                 T response = executeMethod(method,request,responseClass);
-                System.out.println(response);
+                logger.info(response);
             }
             
         });
