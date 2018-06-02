@@ -49,48 +49,26 @@ public class MethodExecutor {
         return methods.get(method);
     }
 
-    public RestTemplate getRestTemplate() {
-        return restTemplate;
-    }
 
     public void setRestTemplate(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
-    }
-
-    public ObjectMapper getObjectMapper() {
-        return objectMapper;
     }
 
     public void setObjectMapper(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
     }
 
-    public Map<Method, String> getMethods() {
-        return methods;
-    }
 
     public void setMethods(Map<Method, String> methods) {
         this.methods = methods;
-    }
-
-    public String getToken() {
-        return token;
     }
 
     public void setToken(String token) {
         this.token = token;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
     public void setUrl(String url) {
         this.url = url;
-    }
-
-    public ExecutorService getExecutorService() {
-        return executorService;
     }
 
     public void setExecutorService(ExecutorService executorService) {

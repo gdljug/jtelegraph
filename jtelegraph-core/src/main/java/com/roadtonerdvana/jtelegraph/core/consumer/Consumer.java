@@ -24,16 +24,8 @@ public class Consumer implements Runnable {
         }
     }
 
-    public Queue<Update> getQueue() {
-        return queue;
-    }
-
     public void setQueue(Queue<Update> queue) {
         this.queue = queue;
-    }
-
-    public Command getCommand() {
-        return command;
     }
 
     public void setCommand(Command command) {

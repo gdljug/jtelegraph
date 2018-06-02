@@ -48,20 +48,9 @@ public class Producer implements Runnable {
 
     }
 
-
-    public Queue<Update> getQueue() {
-        return queue;
-    }
-
     public void setQueue(Queue<Update> queue) {
         this.queue = queue;
     }
-
-
-    public MethodExecutor getMethodExecutor() {
-        return methodExecutor;
-    }
-
 
     public void setMethodExecutor(MethodExecutor methodExecutor) {
         this.methodExecutor = methodExecutor;

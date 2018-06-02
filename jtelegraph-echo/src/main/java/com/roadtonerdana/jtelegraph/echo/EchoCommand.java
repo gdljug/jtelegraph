@@ -21,10 +21,6 @@ public class EchoCommand implements Command{
         }
     }
 
-    public MethodExecutor getMethodExecutor() {
-        return methodExecutor;
-    }
-
     public void setMethodExecutor(MethodExecutor methodExecutor) {
         this.methodExecutor = methodExecutor;
     }
