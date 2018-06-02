@@ -13,6 +13,7 @@ public class Consumer implements Runnable {
 
     private Queue<Update> queue;
     private Command command;
+    private Integer timeToSleepIfNoItemsInQueue;
 
     @Override
     public void run() {
@@ -21,7 +22,7 @@ public class Consumer implements Runnable {
                 command.execute(queue.poll());
             }
             try {
-                Thread.sleep(1000);
+                Thread.sleep(timeToSleepIfNoItemsInQueue);
             } catch (InterruptedException e) {
                 logger.error(e);
             }
@@ -29,11 +30,21 @@ public class Consumer implements Runnable {
     }
 
     public void setQueue(Queue<Update> queue) {
-        this.queue = queue;
+        if (this.queue == null) {
+            this.queue = queue;   
+        }
     }
 
     public void setCommand(Command command) {
-        this.command = command;
+        if (this.command == null) {
+            this.command = command;
+        }
+    }
+    
+    public void setTimeToSleepIfNoItemsInQueue(int timeToSleepIfNoItemsInQueue) {
+        if (this.timeToSleepIfNoItemsInQueue == null) {
+            this.timeToSleepIfNoItemsInQueue = timeToSleepIfNoItemsInQueue;
+        }
     }
     
     

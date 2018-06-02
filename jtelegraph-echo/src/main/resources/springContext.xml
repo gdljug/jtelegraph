@@ -35,6 +35,9 @@
 	<bean id="producer" class="com.roadtonerdvana.jtelegraph.core.producer.Producer">
 		<property name="methodExecutor" ref="methodExecutor"/>
 		<property name="queue" ref="queue"/>
+		<property name="maxUpdatesToGet" value="${maxUpdatesToGet}"/>
+		<property name="longPollingTimeOut" value="${longPollingTimeOut}"/>
+		<property name="timeToSleepBeetweenPolling" value="${timeToSleepBeetweenPolling}"/>
 	</bean>
 	
 	<bean id="command" class="com.roadtonerdana.jtelegraph.echo.EchoCommand">
@@ -44,6 +47,7 @@
 	<bean id="consumer" class="com.roadtonerdvana.jtelegraph.core.consumer.Consumer">
 		<property name="queue" ref="queue"/>
 		<property name="command" ref="command"/>
+		<property name="timeToSleepIfNoItemsInQueue" value="${timeToSleepIfNoItemsInQueue}"/>
 	</bean>
 	
 	<bean id="runner" class="com.roadtonerdvana.jtelegraph.core.runner.Runner">

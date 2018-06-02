@@ -54,28 +54,40 @@ public class MethodExecutor {
 
 
     public void setRestTemplate(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
+        if (this.restTemplate == null) {
+            this.restTemplate = restTemplate;            
+        }
     }
 
     public void setObjectMapper(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
+        if (this.objectMapper == null) {
+            this.objectMapper = objectMapper;            
+        }
     }
 
 
     public void setMethods(Map<Method, String> methods) {
-        this.methods = methods;
+        if (this.methods == null) {
+            this.methods = methods;
+        }
     }
 
     public void setToken(String token) {
-        this.token = token;
+        if (this.token == null) {
+            this.token = token;
+        }
     }
 
     public void setUrl(String url) {
-        this.url = url;
+        if (this.url == null) {
+            this.url = url;            
+        }
     }
 
     public void setExecutorService(ExecutorService executorService) {
-        this.executorService = executorService;
+        if (this.executorService == null) {
+            this.executorService = executorService;
+        }
     }
     
     

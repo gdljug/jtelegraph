@@ -5,11 +5,7 @@ import java.util.Queue;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.web.client.RestTemplate;
 
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.roadtonerdvana.jtelegraph.core.MethodExecutor;
 import com.roadtonerdvana.jtelegraph.core.Method;
 import com.roadtonerdvana.jtelegraph.telegrambotapi.updates.GetUpdates;
@@ -22,6 +18,12 @@ public class Producer implements Runnable {
     private Queue<Update> queue;
     
     private MethodExecutor methodExecutor;
+    
+    private Integer maxUpdatesToGet;
+    
+    private Integer longPollingTimeOut;
+    
+    private Integer timeToSleepBeetweenPolling;
 
     public Update[] longPolling(GetUpdates request) {
         logger.info("Begin long polling");
@@ -34,15 +36,15 @@ public class Producer implements Runnable {
         try {
             GetUpdates request = new GetUpdates();
             request.setOffset(null);
-            request.setLimit(100);
-            request.setTimeout(60000);
+            request.setLimit(maxUpdatesToGet);
+            request.setTimeout(longPollingTimeOut);
             while (true) {
                 Update[] updates = longPolling(request);
                 if (updates != null && updates.length != 0) {
                     queue.addAll(Arrays.asList(updates));
                     request.setOffset(updates[updates.length - 1].getUpdateId() + 1);
                 }
-                Thread.sleep(1000);
+                Thread.sleep(timeToSleepBeetweenPolling);
 
             }
         } catch (Exception e) {
@@ -52,13 +54,34 @@ public class Producer implements Runnable {
     }
 
     public void setQueue(Queue<Update> queue) {
-        this.queue = queue;
+        if (this.queue == null) { 
+            this.queue = queue;
+        }
     }
 
     public void setMethodExecutor(MethodExecutor methodExecutor) {
-        this.methodExecutor = methodExecutor;
+        if (this.methodExecutor == null) {
+            this.methodExecutor = methodExecutor;
+        }
     }
 
 
+    public void setMaxUpdatesToGet(int maxUpdatesToGet) {
+        if (this.maxUpdatesToGet == null) {
+            this.maxUpdatesToGet = maxUpdatesToGet;
+        }
+    }
+
+    public void setLongPollingTimeOut(int longPollingTimeOut) {
+        if (this.longPollingTimeOut == null) {
+            this.longPollingTimeOut = longPollingTimeOut;
+        }        
+    }
+
+    public void setTimeToSleepBeetweenPolling(int timeToSleepBeetweenPolling) {
+        if (this.timeToSleepBeetweenPolling == null) {
+            this.timeToSleepBeetweenPolling = timeToSleepBeetweenPolling;
+        }     
+    }
 
 }
