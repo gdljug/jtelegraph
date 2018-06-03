@@ -1,0 +1,18 @@
+{
+  "description": "Use this method to send photos. On success, the sent Message is returned.. https://core.telegram.org/bots/api/#sendphoto",
+  "type": "object",
+  "additionalProperties": false,
+  "javaType": "com.roadtonerdvana.jtelegraph.telegrambotapi.updates.SendPhoto",
+  "properties": {
+    "chat_id": {
+      "type": "string"
+    },
+    "photo": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "chat_id",
+    "photo"
+  ]
+}
