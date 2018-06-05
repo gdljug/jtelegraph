@@ -29,22 +29,25 @@ public class Consumer implements Runnable {
         }
     }
 
-    public void setQueue(Queue<Update> queue) {
+    public Consumer setQueue(Queue<Update> queue) {
         if (this.queue == null) {
             this.queue = queue;   
         }
+        return this;
     }
 
-    public void setCommand(Command command) {
+    public Consumer setCommand(Command command) {
         if (this.command == null) {
             this.command = command;
         }
+        return this;
     }
     
-    public void setTimeToSleepIfNoItemsInQueue(int timeToSleepIfNoItemsInQueue) {
+    public Consumer setTimeToSleepIfNoItemsInQueue(int timeToSleepIfNoItemsInQueue) {
         if (this.timeToSleepIfNoItemsInQueue == null) {
             this.timeToSleepIfNoItemsInQueue = timeToSleepIfNoItemsInQueue;
         }
+        return this;
     }
     
     

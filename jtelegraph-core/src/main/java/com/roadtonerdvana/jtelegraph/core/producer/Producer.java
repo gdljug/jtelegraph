@@ -53,35 +53,40 @@ public class Producer implements Runnable {
 
     }
 
-    public void setQueue(Queue<Update> queue) {
+    public Producer setQueue(Queue<Update> queue) {
         if (this.queue == null) { 
             this.queue = queue;
         }
+        return this;
     }
 
-    public void setMethodExecutor(MethodExecutor methodExecutor) {
+    public Producer setMethodExecutor(MethodExecutor methodExecutor) {
         if (this.methodExecutor == null) {
             this.methodExecutor = methodExecutor;
         }
+        return this;
     }
 
 
-    public void setMaxUpdatesToGet(int maxUpdatesToGet) {
+    public Producer setMaxUpdatesToGet(int maxUpdatesToGet) {
         if (this.maxUpdatesToGet == null) {
             this.maxUpdatesToGet = maxUpdatesToGet;
         }
+        return this;
     }
 
-    public void setLongPollingTimeOut(int longPollingTimeOut) {
+    public Producer setLongPollingTimeOut(int longPollingTimeOut) {
         if (this.longPollingTimeOut == null) {
             this.longPollingTimeOut = longPollingTimeOut;
-        }        
+        }   
+        return this;
     }
 
-    public void setTimeToSleepBeetweenPolling(int timeToSleepBeetweenPolling) {
+    public Producer setTimeToSleepBeetweenPolling(int timeToSleepBeetweenPolling) {
         if (this.timeToSleepBeetweenPolling == null) {
             this.timeToSleepBeetweenPolling = timeToSleepBeetweenPolling;
-        }     
+        }
+        return this;
     }
 
 }

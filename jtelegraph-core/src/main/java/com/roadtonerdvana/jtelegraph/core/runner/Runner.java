@@ -13,12 +13,18 @@ public class Runner {
         new Thread(consumer).start();
     }
 
-    public void setProducer(Producer producer) {
-        this.producer = producer;
+    public Runner setProducer(Producer producer) {
+        if (this.producer == null) {
+            this.producer = producer;
+        }
+        return this;
     }
 
-    public void setConsumer(Consumer consumer) {
-        this.consumer = consumer;
+    public Runner setConsumer(Consumer consumer) {
+        if (this.consumer == null) {
+            this.consumer = consumer;
+        }
+        return this;
     }
     
     
