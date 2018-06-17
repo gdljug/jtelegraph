@@ -13,7 +13,7 @@ import com.roadtonerdvana.jtelegraph.core.MethodExecutor;
 import com.roadtonerdvana.jtelegraph.core.consumer.Command;
 import com.roadtonerdvana.jtelegraph.telegrambotapi.types.Message;
 import com.roadtonerdvana.jtelegraph.telegrambotapi.types.PhotoSize;
-import com.roadtonerdvana.jtelegraph.telegrambotapi.updates.SendMessage;
+import com.roadtonerdvana.jtelegraph.telegrambotapi.methods.SendMessage;
 import com.roadtonerdvana.jtelegraph.telegrambotapi.updates.Update;
 import com.roadtonerdana.jtelegraph.meme.image.CreateAndSendMeme;
 import com.roadtonerdana.jtelegraph.meme.image.MemeRequest;

@@ -31,7 +31,7 @@ import javax.imageio.ImageIO;
 public class ImageOverlay {
 
     private static final int MAX_FONT_SIZE = 48;
-    private static final int BOTTOM_MARGIN = 10;
+    private static final int BOTTOM_MARGIN = 5;
     private static final int TOP_MARGIN = 5;
     private static final int SIDE_MARGIN = 10;
     private static final String TOP_TEXT = "This is a long bit of text on the top, but don't worry, this algorithm will take care of it";
@@ -90,7 +90,7 @@ public class ImageOverlay {
             StringBuilder sb = new StringBuilder();
             int left = 0;
             int right = text.length() - 1;
-            while ( left < right ) {
+            while ( left <= right ) {//fix to be able to use only one character
 
                 String substring = text.substring(left, right + 1);
                 Rectangle2D stringBounds = g.getFontMetrics().getStringBounds(substring, g);
@@ -138,7 +138,7 @@ public class ImageOverlay {
         if ( top ) {
             y = TOP_MARGIN + g.getFontMetrics().getHeight();
         } else {
-            y = image.getHeight() - height - BOTTOM_MARGIN + g.getFontMetrics().getHeight();
+            y = image.getHeight() - height - BOTTOM_MARGIN + g.getFontMetrics().getHeight() / 2;
         }
         for ( String line : formattedString.split("\n") ) {
             // Draw each string twice for a shadow effect

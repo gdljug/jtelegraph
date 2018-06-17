@@ -3,14 +3,12 @@ package com.roadtonerdana.jtelegraph.meme.image;
 import java.io.File;
 import java.io.IOException;
 
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 
 import com.roadtonerdvana.jtelegraph.core.Method;
 import com.roadtonerdvana.jtelegraph.core.MethodExecutor;
 import com.roadtonerdvana.jtelegraph.telegrambotapi.types.Message;
-import com.roadtonerdvana.jtelegraph.telegrambotapi.updates.GetFile;
-import com.roadtonerdvana.jtelegraph.telegrambotapi.updates.SendPhoto;
+import com.roadtonerdvana.jtelegraph.telegrambotapi.methods.GetFile;
+import com.roadtonerdvana.jtelegraph.telegrambotapi.methods.SendPhoto;
 
 public class CreateAndSendMeme {
 

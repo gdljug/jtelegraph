@@ -1,7 +1,7 @@
 {
   "description": "Use this method to get basic info about a file and prepare it for downloading. https://core.telegram.org/bots/api#getfile",
   "type": "object",
-  "javaType": "com.roadtonerdvana.jtelegraph.telegrambotapi.updates.GetFile",
+  "javaType": "com.roadtonerdvana.jtelegraph.telegrambotapi.methods.GetFile",
   "properties": {
     "file_id": {
       "type": "string"
