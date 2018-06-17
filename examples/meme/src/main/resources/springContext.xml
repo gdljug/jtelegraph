@@ -22,8 +22,12 @@
 		<constructor-arg value="10"/>
 	</bean>
 	
+
+	
 	<bean id="methodExecutor" class="com.roadtonerdvana.jtelegraph.core.MethodExecutor">
 		<property name="url" value="${url}"/>
+	    <property name="downloadUrl" value="${downloadUrl}"/>
+		<property name="downloadDirectory" value="${downloadDirectory}"/>
 		<property name="token" value="${token}"/>
 		<property name="restTemplate" ref="restTemplate"/>
 		<property name="objectMapper" ref="objectMapper"/>
@@ -40,8 +44,14 @@
 		<property name="timeToSleepBeetweenPolling" value="${timeToSleepBeetweenPolling}"/>
 	</bean>
 	
+	<bean id="executorServiceForCommand" class="java.util.concurrent.Executors" factory-method="newFixedThreadPool">
+		<constructor-arg value="10"/>
+	</bean>
+	
 	<bean id="command" class="com.roadtonerdana.jtelegraph.meme.MemeCommand">
 		<property name="methodExecutor" ref="methodExecutor"/>
+		<property name="memeDirectoryPath" value="${memeDirectoryPath}"/>
+		<property name="executorService" ref="executorServiceForCommand"/>
 	</bean>
 	
 	<bean id="consumer" class="com.roadtonerdvana.jtelegraph.core.consumer.Consumer">

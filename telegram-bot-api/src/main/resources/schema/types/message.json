@@ -40,6 +40,14 @@
     },
     "text": {
       "type": "string"
+    },
+    "photo": {
+      "type": "array",
+      "items": {
+        "javaType": "com.roadtonerdvana.jtelegraph.telegrambotapi.types.PhotoSize",
+        "$ref": "photoSize.json",
+        "type": "object"
+      } 
     }
   },
   "required": [

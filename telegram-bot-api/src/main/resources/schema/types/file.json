@@ -1,0 +1,20 @@
+{
+  "description": "This object represents a file ready to be downloaded. https://core.telegram.org/bots/api#file",
+  "type": "object",
+  "additionalProperties": false,
+  "javaType": "com.roadtonerdvana.jtelegraph.telegrambotapi.types.File",
+  "properties": {
+    "file_id": {
+      "type": "string"
+    },
+    "file_size": {
+      "type": "integer"
+    },
+    "file_path": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "file_id"
+  ]
+}

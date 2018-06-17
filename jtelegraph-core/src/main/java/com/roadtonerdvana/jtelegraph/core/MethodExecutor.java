@@ -1,7 +1,11 @@
 package com.roadtonerdvana.jtelegraph.core;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ExecutorService;
@@ -35,6 +39,9 @@ public class MethodExecutor {
     private Map<Method, String> methods;
     private String token;
     private String url;
+    private String downloadUrl;
+    private String downloadDirectory;
+    private String downloadUrlWithToken;
 
     public <T, U> T executeMethod(Method method, U request, Class<T> responseClass) {
         String url = getMethodUrl(method);
@@ -43,6 +50,7 @@ public class MethodExecutor {
                 case GET_UPDATES:
                 case SEND_MESSAGE:
                 case SEND_PHOTO_WITH_ID:
+                case GET_FILE:
                     return executeMethod(url, request, responseClass);
                 case SEND_PHOTO_WITH_FILE:
                     return executeMethod(url, method.getFileKey(), request, responseClass);
@@ -63,6 +71,32 @@ public class MethodExecutor {
                 logger.info(response);
             }
         });
+    }
+    
+    public String downloadFile(com.roadtonerdvana.jtelegraph.telegrambotapi.types.File file) {
+        FileOutputStream fos = null;
+        try {
+            String filePath = file.getFilePath();
+            URL website = new URL(getDownloadUrlWithToken() + filePath);
+            ReadableByteChannel rbc = Channels.newChannel(website.openStream());
+            String downloadFilePath = getDownloadPath(filePath);
+            fos = new FileOutputStream(downloadFilePath);
+            fos.getChannel().transferFrom(rbc, 0, file.getFileSize());
+            return downloadFilePath;
+        } catch(Exception e) {
+            logger.error("Error downloading file",e);
+            return null;
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException e) {
+                logger.error("Failed closing fileoutputstream",e);
+            }
+        }
+    }
+    
+    private String getDownloadPath(String filePath) {
+        return downloadDirectory + System.currentTimeMillis() + filePath.substring(filePath.lastIndexOf('/') + 1 );
     }
 
     private <T, U> T executeMethod(String url, String fileKey, U request, Class<T> responseClass) {
@@ -107,6 +141,13 @@ public class MethodExecutor {
         }
         return methods.get(method);
     }
+    
+    private String getDownloadUrlWithToken() {
+        if(downloadUrlWithToken == null) {
+            downloadUrlWithToken = downloadUrl + token+ '/';
+        }
+        return downloadUrlWithToken;
+    }
 
     public MethodExecutor setRestTemplate(RestTemplate restTemplate) {
         if (this.restTemplate == null) {
@@ -146,6 +187,28 @@ public class MethodExecutor {
     public MethodExecutor setExecutorService(ExecutorService executorService) {
         if (this.executorService == null) {
             this.executorService = executorService;
+        }
+        return this;
+    }
+
+    public String getDownloadUrl() {
+        return downloadUrl;
+    }
+
+    public MethodExecutor setDownloadUrl(String downloadUrl) {
+        if(this.downloadUrl == null) {
+            this.downloadUrl = downloadUrl;
+        }
+        return this;
+    }
+
+    public String getDownloadDirectory() {
+        return downloadDirectory;
+    }
+
+    public MethodExecutor setDownloadDirectory(String downloadDirectory) {
+        if(this.downloadDirectory == null) {
+            this.downloadDirectory = downloadDirectory;
         }
         return this;
     }

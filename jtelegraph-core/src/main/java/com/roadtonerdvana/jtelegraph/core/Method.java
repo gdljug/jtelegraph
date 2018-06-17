@@ -4,7 +4,8 @@ public enum Method {
     GET_UPDATES("/getUpdates"), 
     SEND_MESSAGE("/sendMessage"), 
     SEND_PHOTO_WITH_ID("/sendPhoto"), 
-    SEND_PHOTO_WITH_FILE("/sendPhoto", "photo");
+    SEND_PHOTO_WITH_FILE("/sendPhoto", "photo"),
+    GET_FILE("/getFile");
 
     private String methodName;
     private String fileKey;

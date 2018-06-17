@@ -1,0 +1,28 @@
+{
+  "description": "This object represents one size of a photo or a file / sticker thumbnail. https://core.telegram.org/bots/api#photosize",
+  "type": "object",
+  "additionalProperties": false,
+  "javaType": "com.roadtonerdvana.jtelegraph.telegrambotapi.types.PhotoSize",
+  "properties": {
+    "file_id": {
+      "type": "string"
+    },
+    "width": {
+      "type": "integer"
+    },
+    "height": {
+      "type": "integer"
+    },
+    "file_size": {
+      "type": "integer"
+    },
+    "file_path": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "file_id",
+    "width",
+    "height"
+  ]
+}
