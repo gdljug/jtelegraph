@@ -15,8 +15,7 @@ public class CreateAndSendMeme {
 
     
     private static String downloadFile(MethodExecutor methodExecutor, String fileId) {
-        GetFile getFile = new GetFile();
-        getFile.setFileId(fileId);
+        var getFile = new GetFile().withFileId(fileId);
         com.roadtonerdvana.jtelegraph.telegrambotapi.types.File file = methodExecutor.executeMethod(Method.GET_FILE, getFile, com.roadtonerdvana.jtelegraph.telegrambotapi.types.File.class);
         return methodExecutor.downloadFile(file);
     }
@@ -27,11 +26,11 @@ public class CreateAndSendMeme {
     }
     
     public static String sendMeme(MethodExecutor methodExecutor, String chatId, MemeRequest memeRequest, String memeDirectoryPath) throws MemeBuilderException, IOException {
-        String path = createMeme(methodExecutor,memeDirectoryPath,memeRequest);
-        File file = new File(path);
-        SendPhoto sendPhoto = new SendPhoto();
-        sendPhoto.setChatId(chatId);
-        sendPhoto.setPhoto(file.getAbsolutePath());
+        var path = createMeme(methodExecutor,memeDirectoryPath,memeRequest);
+        var file = new File(path);
+        var sendPhoto = new SendPhoto()
+                .withChatId(chatId)
+                .withPhoto(file.getAbsolutePath());
         return methodExecutor.executeMethod(Method.SEND_PHOTO_WITH_FILE, sendPhoto, Message.class).toString();
     } 
     

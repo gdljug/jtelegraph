@@ -65,7 +65,7 @@ public class MemeBuilder {
     
     public MemeBuilder loadImage(String filePath) throws MemeBuilderException {
         try {
-            File f = new File(filePath);
+            var f = new File(filePath);
             meme.setBufferedImage(ImageIO.read(f));
             meme.setTargetFileName(f.getName().replace('.', 'o'));
             return this;
@@ -75,7 +75,7 @@ public class MemeBuilder {
     }
     
     public MemeBuilder toTargetDirectory(String directoryPath) throws MemeBuilderException {
-        File f = new File(directoryPath);
+        var f = new File(directoryPath);
         if(f.exists() && f.isDirectory() ) {
             meme.setTargetPath(f.getAbsolutePath() + File.separatorChar + meme.getTargetFileName() + ".png");
             return this;
@@ -99,7 +99,7 @@ public class MemeBuilder {
         FileOutputStream fos = null;
         try {  
             ImageOverlay.overlay(meme.getBufferedImage(), meme.getUpperText(), meme.getLowerText());
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            var baos = new ByteArrayOutputStream();
             ImageIO.write(meme.getBufferedImage(), "png", baos);
             fos = new FileOutputStream(meme.getTargetPath());
             fos.write(baos.toByteArray());

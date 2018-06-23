@@ -5,7 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.channels.Channels;
-import java.nio.channels.ReadableByteChannel;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ExecutorService;
@@ -18,7 +17,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -44,7 +42,7 @@ public class MethodExecutor {
     private String downloadUrlWithToken;
 
     public <T, U> T executeMethod(Method method, U request, Class<T> responseClass) {
-        String url = getMethodUrl(method);
+        var url = getMethodUrl(method);
         try {
             switch (method) {
                 case GET_UPDATES:
@@ -76,10 +74,10 @@ public class MethodExecutor {
     public String downloadFile(com.roadtonerdvana.jtelegraph.telegrambotapi.types.File file) {
         FileOutputStream fos = null;
         try {
-            String filePath = file.getFilePath();
-            URL website = new URL(getDownloadUrlWithToken() + filePath);
-            ReadableByteChannel rbc = Channels.newChannel(website.openStream());
-            String downloadFilePath = getDownloadPath(filePath);
+            var filePath = file.getFilePath();
+            var website = new URL(getDownloadUrlWithToken() + filePath);
+            var rbc = Channels.newChannel(website.openStream());
+            var downloadFilePath = getDownloadPath(filePath);
             fos = new FileOutputStream(downloadFilePath);
             fos.getChannel().transferFrom(rbc, 0, file.getFileSize());
             return downloadFilePath;
@@ -100,11 +98,11 @@ public class MethodExecutor {
     }
 
     private <T, U> T executeMethod(String url, String fileKey, U request, Class<T> responseClass) {
-        HttpHeaders headers = new HttpHeaders();
+        var headers = new HttpHeaders();
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
         Map<String, String> simpleMap = objectMapper.convertValue(request, new TypeReference<Map<String, String>>() {
         });
-        MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+        var map = new LinkedMultiValueMap<String, Object>();
         map.add(fileKey, new FileSystemResource(new File((String) simpleMap.get(fileKey))));
   
         for (Entry<String, String> entry : simpleMap.entrySet()) {
@@ -116,7 +114,7 @@ public class MethodExecutor {
         HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<MultiValueMap<String, Object>>(map,
                 headers);
 
-        ResponseEntity<T> result = restTemplate.exchange(url, HttpMethod.POST, requestEntity, responseClass);
+        var result = restTemplate.exchange(url, HttpMethod.POST, requestEntity, responseClass);
         if (result.getStatusCode() == HttpStatus.OK) {
             return result.getBody();
         }
@@ -127,7 +125,7 @@ public class MethodExecutor {
     private <T, U> T executeMethod(String url, U request, Class<T> responseClass)
             throws JsonParseException, JsonMappingException, IOException {
 
-        JsonNode jsonNode = restTemplate.postForObject(url, request, JsonNode.class);
+        var jsonNode = restTemplate.postForObject(url, request, JsonNode.class);
         if (jsonNode.get("ok").asBoolean()) {
             return objectMapper.readValue(jsonNode.get("result").toString(), responseClass);
         }

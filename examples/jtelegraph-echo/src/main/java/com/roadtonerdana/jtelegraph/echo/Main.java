@@ -2,11 +2,9 @@ package com.roadtonerdana.jtelegraph.echo;
 
 import java.util.HashMap;
 import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Executors;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,27 +24,34 @@ public class Main {
     public static void main(String []args) {
         String token = "";
         final Queue<Update> queue = new ConcurrentLinkedQueue<Update>();
-        final MethodExecutor methodExcecutor = new MethodExecutor().setExecutorService(Executors.newFixedThreadPool(10))
-                .setObjectMapper(new ObjectMapper()).setRestTemplate(new RestTemplate())
-                .setMethods(new HashMap<Method, String>()).setUrl("https://api.telegram.org/bot").setToken(token);
+        final MethodExecutor methodExcecutor = new MethodExecutor()
+                .setExecutorService(Executors.newFixedThreadPool(10))
+                .setObjectMapper(new ObjectMapper())
+                .setRestTemplate(new RestTemplate())
+                .setMethods(new HashMap<Method, String>())
+                .setUrl("https://api.telegram.org/bot").setToken(token);
         new Runner()
-                .setProducer(new Producer().setLongPollingTimeOut(60000).setMaxUpdatesToGet(100).setQueue(queue)
-                        .setTimeToSleepBeetweenPolling(1000).setMethodExecutor(methodExcecutor))
+                .setProducer(new Producer()
+                        .setLongPollingTimeOut(60000)
+                        .setMaxUpdatesToGet(100).setQueue(queue)
+                        .setTimeToSleepBeetweenPolling(1000)
+                        .setMethodExecutor(methodExcecutor))
                 .setConsumer(
-                        new Consumer().setTimeToSleepIfNoItemsInQueue(1000).setQueue(queue).setCommand(new Command() {
-
+                        new Consumer()
+                        .setTimeToSleepIfNoItemsInQueue(1000)
+                        .setQueue(queue)
+                        .setCommand(new Command() {
                             @Override
                             public void execute(Update update) {
-                                SendMessage sendMessage = new SendMessage();
-                                sendMessage.setChatId(update.getMessage().getChat().getId().toString());
                                 String text = update.getMessage().getText();
                                 if(text == null || text.length() == 0) {
                                     text = "no habia texto";
                                 } 
-                                sendMessage.setText(text);
+                                var sendMessage = new SendMessage()
+                                        .withChatId(update.getMessage().getChat().getId().toString())
+                                        .withText(text);
                                 methodExcecutor.executeMethodAsync(Method.SEND_MESSAGE, sendMessage, Message.class);
                             }
-
                         }))
                 .start();
     }

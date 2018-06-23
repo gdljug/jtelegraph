@@ -104,9 +104,9 @@ public class MemeCommand implements Command{
     }
     
     private void sendMessage(String chatId, String message) {
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.setChatId(chatId);
-        sendMessage.setText(message);
+        var sendMessage = new SendMessage()
+                .withChatId(chatId)
+                .withText(message);
         methodExecutor.executeMethodAsync(Method.SEND_MESSAGE, sendMessage, Message.class);
     }
     

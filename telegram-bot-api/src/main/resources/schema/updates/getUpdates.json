@@ -8,10 +8,15 @@
       "type": "integer"
     },
     "limit": {
-      "type": "integer"
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100,
+      "default": 100
     },
     "timeout": {
-      "type": "integer"
+      "type": "integer",
+      "minimum": 0,
+      "default" : 0
     },
     "allowed_updates": {
       "type": "string",

@@ -34,12 +34,12 @@ public class Producer implements Runnable {
     @Override
     public void run() {
         try {
-            GetUpdates request = new GetUpdates();
-            request.setOffset(null);
-            request.setLimit(maxUpdatesToGet);
-            request.setTimeout(longPollingTimeOut);
+            var request = new GetUpdates()
+                    .withOffset(null)
+                    .withLimit(maxUpdatesToGet)
+                    .withTimeout(longPollingTimeOut);
             while (true) {
-                Update[] updates = longPolling(request);
+                var updates = longPolling(request);
                 if (updates != null && updates.length != 0) {
                     queue.addAll(Arrays.asList(updates));
                     request.setOffset(updates[updates.length - 1].getUpdateId() + 1);
